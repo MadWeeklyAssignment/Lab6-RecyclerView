@@ -39,7 +39,15 @@ public class MainActivity<WordListAdapter> extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
+    // Get the position of the item that was clicked.
+    int mPosition = getLayoutPosition();
+    // Use that to access the affected item in mWordList.
+    String element = mWordList.get(mPosition);
+// Change the word in the mWordList.
+mWordList.set(mPosition, "Clicked! " + element);
+// Notify the adapter, that the data has changed so it can
+// update the RecyclerView to display the data.
+mAdapter.notifyDataSetChanged();
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

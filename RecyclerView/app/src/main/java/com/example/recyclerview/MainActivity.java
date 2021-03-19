@@ -70,20 +70,4 @@ fab.setOnClickListener(new View.OnClickListener() {
             // Scroll to the bottom.
             mRecyclerView.smoothScrollToPosition(wordListSize);
         }
-    });
-        for (int i = 0; i < 20; i++) {
-
-    public class MainActivity extends AppCompatActivity {
-        private final LinkedList<String> mWordList = new LinkedList<>();
-
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            @@ -30,6 +33,9 @@ public void onClick(View view) {
-                        .setAction("Action", null).show();
-            }
-        });
-        for (int i = 0; i < 20; i++) {
-            mWordList.addLast("Word " + i);
-        }
-    }
-}
+    

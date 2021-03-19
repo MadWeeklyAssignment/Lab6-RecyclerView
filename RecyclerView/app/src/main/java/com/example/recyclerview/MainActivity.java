@@ -53,4 +53,22 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    import android.view.Menu;
+import android.view.MenuItem;
+
+import java.util.LinkedList;
+
+    public class MainActivity extends AppCompatActivity {
+        private final LinkedList<String> mWordList = new LinkedList<>();
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            @@ -30,6 +33,9 @@ public void onClick(View view) {
+                        .setAction("Action", null).show();
+            }
+        });
+        for (int i = 0; i < 20; i++) {
+            mWordList.addLast("Word " + i);
+        }
+    }
 }

@@ -7,13 +7,14 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity<WordListAdapter> extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,3 +71,5 @@ fab.setOnClickListener(new View.OnClickListener() {
             // Scroll to the bottom.
             mRecyclerView.smoothScrollToPosition(wordListSize);
         }
+        private RecyclerView mRecyclerView;
+        private WordListAdapter mAdapter;

@@ -1,10 +1,11 @@
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class WordListAdapter extends
+class WordListAdapter extends
         RecyclerView.Adapter<WordListAdapter.WordViewHolder>  {
     @NonNull
     @Override
@@ -25,7 +26,9 @@ public class WordListAdapter extends
         public final TextView wordItemView;
         final WordListAdapter mAdapter;
 
-        WordViewHolder(WordListAdapter mAdapter) {
+        public WordViewHolder(@NonNull View itemView, TextView wordItemView, WordListAdapter mAdapter) {
+            super(itemView);
+            this.wordItemView = wordItemView;
             this.mAdapter = mAdapter;
         }
     }

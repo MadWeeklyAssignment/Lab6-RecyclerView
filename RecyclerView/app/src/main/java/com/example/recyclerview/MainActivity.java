@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
@@ -14,7 +15,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity<WordListAdapter> extends AppCompatActivity {
+import java.util.LinkedList;
+
+public class MainActivity extends AppCompatActivity {
+    private final LinkedList<String> mWordList = new LinkedList<>();
+    private RecyclerView mRecyclerView;
+    private WordListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +33,26 @@ public class MainActivity<WordListAdapter> extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                int wordListSize = mWordList.size();
+                // Add a new word to the wordList.
+                mWordList.addLast("+ Word " + wordListSize);
+                // Notify the adapter, that the data has changed.
+                mRecyclerView.getAdapter().notifyItemInserted(wordListSize);
+                // Scroll to the bottom.
+                mRecyclerView.smoothScrollToPosition(wordListSize);
             }
         });
+        for (int i = 0; i < 20; i++) {
+            mWordList.addLast("Word " + i);
+        }
+        // Get a handle to the RecyclerView.
+        mRecyclerView = findViewById(R.id.recyclerview);
+        // Create an adapter and supply the data to be displayed.
+        mAdapter = new WordListAdapter(this, mWordList);
+        // Connect the adapter with the RecyclerView.
+        mRecyclerView.setAdapter(mAdapter);
+        // Give the RecyclerView a default layout manager.
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
@@ -39,15 +61,7 @@ public class MainActivity<WordListAdapter> extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-    // Get the position of the item that was clicked.
-    int mPosition = getLayoutPosition();
-    // Use that to access the affected item in mWordList.
-    String element = mWordList.get(mPosition);
-// Change the word in the mWordList.
-mWordList.set(mPosition, "Clicked! " + element);
-// Notify the adapter, that the data has changed so it can
-// update the RecyclerView to display the data.
-mAdapter.notifyDataSetChanged();
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -62,32 +76,4 @@ mAdapter.notifyDataSetChanged();
 
         return super.onOptionsItemSelected(item);
     }
-    import android.view.Menu;
-import android.view.MenuItem;
-
-import java.util.LinkedList;
-fab.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-            int wordListSize = mWordList.size();
-            // Add a new word to the wordList.
-            mWordList.addLast("+ Word " + wordListSize);
-            // Notify the adapter, that the data has changed.
-            mRecyclerView.getAdapter().notifyItemInserted(wordListSize);
-            // Scroll to the bottom.
-            mRecyclerView.smoothScrollToPosition(wordListSize);
-        }
-        private RecyclerView mRecyclerView;
-        private WordListAdapter mAdapter;
-        @Override
-        public void onClick(View view) {
-            int wordListSize = mWordList.size();
-            // Add a new word to the wordList.
-            mWordList.addLast("+ Word " + wordListSize);
-            // Notify the adapter, that the data has changed.
-            mRecyclerView.getAdapter().notifyItemInserted(wordListSize);
-            // Scroll to the bottom.
-            mRecyclerView.smoothScrollToPosition(wordListSize);
-        }
+}

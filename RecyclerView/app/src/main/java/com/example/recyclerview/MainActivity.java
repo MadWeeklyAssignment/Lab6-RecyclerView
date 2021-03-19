@@ -70,4 +70,3 @@ fab.setOnClickListener(new View.OnClickListener() {
             // Scroll to the bottom.
             mRecyclerView.smoothScrollToPosition(wordListSize);
         }
-    

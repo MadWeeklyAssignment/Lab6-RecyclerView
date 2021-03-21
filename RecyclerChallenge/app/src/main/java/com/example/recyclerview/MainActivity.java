@@ -2,6 +2,7 @@ package com.example.recyclerview;
 
 import android.os.Bundle;
 
+import com.example.recyclerchallenge.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -46,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
             mWordList.addLast("Word " + i);
         }
         // Get a handle to the RecyclerView.
-        mRecyclerView = findViewById(R.id.recyclerview);
+       // mRecyclerView = findViewById(R.id.recyclerview);
+        mRecyclerView =findViewById(R.id.recyclerview)
         // Create an adapter and supply the data to be displayed.
         mAdapter = new WordListAdapter(this, mWordList);
         // Connect the adapter with the RecyclerView.

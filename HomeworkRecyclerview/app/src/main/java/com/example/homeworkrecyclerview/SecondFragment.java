@@ -1,4 +1,4 @@
-package com.example.recyclerchallenge;
+package com.example.homeworkrecyclerview;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
